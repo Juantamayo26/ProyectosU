@@ -1,10 +1,3 @@
-"""
-PARCIAL 1
-Creado por:
-  Juan Carlos Yepes Tamamayo
-            &
-  Juan Manuel Suarez Aguirre
-"""
 import numpy as np
 import matplotlib.pyplot as plt
 import sympy as sp
