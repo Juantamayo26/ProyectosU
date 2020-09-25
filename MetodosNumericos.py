@@ -78,7 +78,7 @@ def punto_fijo(func):
   xr = float(input("Digite el x0:"))
   e = float(input("Digite el error:"))
   i=0
-  xn = 1
+  xn = xr
   maxIter=100
   while i<maxIter:
     xn = fPF.evalf(subs={x:xr})
@@ -206,7 +206,7 @@ def menu():
   print("METODOS DE RAICES")
   print("2) GRAFICO")
   print("3) BISECCION")
-  print("4) PUNTO FIJO")
+  print("4) JO")
   print("5) NEWTHON_RAPHSON")
   print("6) SECANTE")
   print("METODOS DE INTEGRACION")
