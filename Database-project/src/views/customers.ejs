@@ -1,0 +1,99 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LoreTriends</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico">
+<style>
+.salir{
+  margin-left:50%;
+}
+.hola{
+  margin-left:5%;
+}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="hola">
+    <a class="navbar-brand" href="/">Inicio</a>
+    <a class="navbar-brand" href="/Clientes">Clientes</a>
+    <a class="navbar-brand" href="/Inventario">Inventario</a>
+    <a class="navbar-brand" href="/Proovedores">Proovedores</a>
+    <a class="navbar-brand" href="/Facturacion">Facturacion</a>
+  </div>
+    <div class="salir">
+      <a class="navbar-brand" href="/logout">Salir</a>
+    </div>
+  </nav>
+<div class="container mt-5">
+    <div class="col-md-5">
+      <div class="card card-body">
+        <form action="Clientes/add" method="POST">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Nombre" class="form-control" autofocus required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="cc" placeholder="Cc" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="phone" placeholder="Telefono" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="address" placeholder="Direccion" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="number" min="0" value="0" name="loans" placeholder="Prestamo" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="description" placeholder="Descripcion" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            Guardar Cliente
+          </button>
+        </form>
+      </div>
+    </div>
+    <br><hr><br>
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>n°</td>
+            <td>Nombre</td>
+            <td>Cc</td>
+            <td>Telefono</td>
+            <td>Direccion</td>
+            <td>Prestamo</td>
+            <td>Descripcion</td>
+            <td>Acciones</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].name %></td>
+                <td><%= data[i].cc%></td>
+                <td><%= data[i].phone %></td>
+                <td><%= data[i].address %></td>
+                <td><%= data[i].loans%></td>
+                <td><%= data[i].description%></td>
+                <td>
+                  <a href="Clientes/update/<%= data[i].id %>" class="btn btn-info">Editar</a>
+                  <a href="Clientes/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

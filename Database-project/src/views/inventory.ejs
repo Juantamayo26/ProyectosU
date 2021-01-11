@@ -1,0 +1,138 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LoreTriends</title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.salir{
+  margin-left:50%;
+}
+.hola{
+  margin-left:5%;
+}
+.fa {  
+			  width: 5px;
+			  padding: 20px;
+			  font-size: 25px;
+			  text-align: center;
+			  text-decoration: none;
+			  margin: 5px 2px;
+			  border-radius: 50%; 
+			}
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="hola">
+    <a class="navbar-brand" href="/">Inicio</a>
+    <a class="navbar-brand" href="/Clientes">Clientes</a>
+    <a class="navbar-brand" href="/Inventario">Inventario</a>
+    <a class="navbar-brand" href="/Proovedores">Proovedores</a>
+    <a class="navbar-brand" href="/Facturacion">Facturacion</a>
+  </div>
+  <%if(user){%>
+    <div class="salir">
+      <a class="navbar-brand" href="/logout">Salir</a>
+    </div>
+  <%}%>
+  <%if(!user){%>
+    <div class="salir">
+      <a class="navbar-brand" href="/signin">Entrar</a>
+    </div>
+  <%}%>
+  </nav>
+<div class="container mt-5">
+    <div class="col-md-5">
+  <%if(!user){%>
+  <a href="https://www.facebook.com/" class="fa fa-facebook"></a>
+  <a href="https://wa.link/yxjayv/" class="fa fa-whatsapp"></a>
+  <a href="https://instagram.com/" class="fa fa-instagram"></a>
+<%}%>
+    <%if(user){%>
+      <div class="card card-body">
+        <form action="Inventario/add" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="Nombre" class="form-control" autofocus required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="sizep" placeholder="Talla" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="number" name="counter" value=1 placeholder="Cantidad" min=0 class="form-control" required>
+          </div>
+          <div class="form-group">
+            <input type="text" name="price" placeholder="Precio" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <select class="form-control" name="status">
+              <option>Disponible</option>
+              <option>No Disponible</option>
+              <option>En Camino</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" name="description" placeholder="Descripcion" class="form-control">
+          </div>
+
+         <div class="form-group">
+            <div class="col-sm-9" >
+              <input class="form-control" type="file" name="image" accept=""/>
+            </div>
+          </div>  
+          <button type="submit" class="btn btn-primary">
+            Guardar 
+          </button>
+        </form>
+      </div>
+    </div>
+    <br><hr><br>
+    <%}%>
+  <div class="row">
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <td>n°</td>
+            <td>Nombre</td>
+            <td>Talla</td>
+            <td>Cantidad</td>
+            <td>Precio</td>
+            <td>Estado</td>
+            <td>Descripcion</td>
+            <td>Imagen</td>
+            <%if(user){%>
+            <td>Acciones</td>
+          <%}%>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for(var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].name %></td>
+                <td><%= data[i].sizep%></td>
+                <td><%= data[i].counter%></td>
+                <td><%= data[i].price%></td>
+                <td><%= data[i].status%></td>
+                <td><%= data[i].description%></td>
+                <td><img alt="SinInfo" width="100px" height="100px" src="http://localhost:3000/images/<%=data[i].image%>" class="img-circle img-responsive"> </td>
+                  <%if(user){%>
+                <td>
+                  <a href="Inventario/update/<%= data[i].id %>" class="btn btn-info">Editar</a>
+                  <a href="Inventario/delete/<%= data[i].id %>" class="btn btn-danger">Eliminar</a>
+                </td> 
+                <%}%>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

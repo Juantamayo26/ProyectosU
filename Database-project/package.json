@@ -1,0 +1,35 @@
+{
+  "name": "Base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "express-handlebars": "^5.2.0",
+    "express-myconnection": "^1.0.4",
+    "express-mysql-session": "^2.1.4",
+    "express-pdf": "^1.2.2",
+    "express-session": "^1.17.1",
+    "express-validator": "^5.3.0",
+    "fs": "0.0.1-security",
+    "html-pdf": "^2.2.0",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "util": "^0.12.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
